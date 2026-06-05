@@ -3,7 +3,7 @@ import { Video } from "../models/video.model.js"
 import { Subscription } from "../models/subscription.model.js"
 import { Like } from "../models/like.model.js"
 import { ApiError } from "../utils/ApiError.js"
-import { ApiResponse } from "../utils/ApiResponse.js"
+import ApiResponse from "../utils/ApiResponse.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 
 const getChannelStats = asyncHandler(async (req, res) => {
@@ -75,11 +75,16 @@ const getChannelStats = asyncHandler(async (req, res) => {
 
         return res
             .status(200)
-            .json(new ApiResponse(200, stats[0], "Channel Stats Fetched Successfully"));
+            .json(new ApiResponse(200, stats[0] || {
+                totalVideos: 0,
+                totalViews: 0,
+                totalLikes: 0,
+                totalSubscribers: 0,
+            }, "Channel Stats Fetched Successfully"));
 
     } catch (error) {
-        throw new ApiError(500, `Error: ${error.message}`);
-
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error: ${message}`)
     }
 
 })
@@ -95,8 +100,8 @@ const getChannelVideos = asyncHandler(async (req, res) => {
             .json(new ApiResponse(200, vidoes, "Channel Videos Fetched Successfully"))
 
     } catch (error) {
-        throw new ApiError(500, `Error: ${error.message}`);
-
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error: ${message}`);
     }
 })
 

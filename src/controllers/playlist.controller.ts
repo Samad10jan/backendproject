@@ -24,7 +24,8 @@ const createPlaylist = asyncHandler(async (req, res) => {
             .status(201)
             .json(new ApiResponse(201, playlist, "Playlist created successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while creating playlist: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while creating playlist: ${message}`)
     }
 })
 
@@ -43,7 +44,8 @@ const getUserPlaylists = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, playlists, "User playlists fetched successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while fetching playlists: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while fetching playlists: ${message}`)
     }
 })
 
@@ -66,7 +68,8 @@ const getPlaylistById = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, playlist, "Playlist fetched successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while fetching playlist: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while fetching playlist: ${message}`)
     }
 })
 
@@ -96,7 +99,8 @@ const addVideoToPlaylist = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, playlist, "Video added to playlist successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while adding video: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while adding video: ${message}`)
     }
 })
 
@@ -123,7 +127,8 @@ const removeVideoFromPlaylist = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, playlist, "Video removed from playlist successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while removing video: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while removing video: ${message}`)
     }
 })
 
@@ -146,7 +151,8 @@ const deletePlaylist = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, null, "Playlist deleted successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while deleting playlist: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while deleting playlist: ${message}`)
     }
 })
 
@@ -164,7 +170,7 @@ const updatePlaylist = asyncHandler(async (req, res) => {
     }
 
     try {
-        const updateData = {}
+        const updateData: { name?: string; description?: string } = {}
         if (name) updateData.name = name
         if (description) updateData.description = description
 
@@ -182,7 +188,8 @@ const updatePlaylist = asyncHandler(async (req, res) => {
             .status(200)
             .json(new ApiResponse(200, playlist, "Playlist updated successfully"))
     } catch (error) {
-        throw new ApiError(500, `Error while updating playlist: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error while updating playlist: ${message}`)
     }
 })
 

@@ -8,32 +8,37 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 
 const getAllVideos = asyncHandler(async (req, res) => {
-    const { page = 1, limit = 10, query, sortBy = "createdAt", sortType = "desc", userId } = req.query;
+    const page = String(req.query.page ?? "1")
+    const limit = String(req.query.limit ?? "10")
+    const query = String(req.query.query ?? "")
+    const sortBy = String(req.query.sortBy ?? "createdAt")
+    const sortType = String(req.query.sortType ?? "desc")
+    const userId = String(req.query.userId ?? "")
     //TODO: get all videos based on query, sort, pagination
 
     // Build filter
-    const filter = {};
+    const filter: Record<string, any> = {}
     if (query) {
-        filter.title = { $regex: query, $options: "i" }; // case-insensitive search
+        filter.title = { $regex: query, $options: "i" }
     }
     if (userId) {
-        filter.owner = new mongoose.Types.ObjectId(userId);
+        filter.owner = new mongoose.Types.ObjectId(userId)
     }
 
     // Sorting
-    const sortOptions = {};
-    sortOptions[sortBy] = sortType === "asc" ? 1 : -1;
+    const sortOptions: Record<string, 1 | -1> = {}
+    sortOptions[sortBy] = sortType === "asc" ? 1 : -1
 
     // Build aggregation pipeline
-    const aggregate = await Video.aggregate([
+    const aggregate = Video.aggregate([
         { $match: filter },
         { $sort: sortOptions }
     ]);
 
     // Pagination options
     const options = {
-        page: parseInt(page),
-        limit: parseInt(limit),
+        page: parseInt(page, 10),
+        limit: parseInt(limit, 10),
         customLabels: {
             docs: "videos",
             totalDocs: "totalResults",
@@ -58,16 +63,17 @@ const publishAVideo = asyncHandler(async (req, res) => {
             throw new ApiError(400, "Title and Description Are required")
         }
 
-        const videoFilePath = req.files?.videoFile[0]?.path
+        const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined
+        const videoFilePath = files?.videoFile?.[0]?.path
 
-        const thumbnailPath = req.files?.thumbnail[0]?.path
+        const thumbnailPath = files?.thumbnail?.[0]?.path
 
         if (!videoFilePath || !thumbnailPath) {
             throw new ApiError(400, "No files Path Provided")
         }
 
-        const videoUpload = await uploadOnCloudinary(videoFilePath)
-        const thumbnailUpload = await uploadOnCloudinary(thumbnailPath)
+        const videoUpload = await uploadOnCloudinary(videoFilePath, "videos")
+        const thumbnailUpload = await uploadOnCloudinary(thumbnailPath, "thumbnails")
 
         if (!videoUpload || !thumbnailUpload) {
             throw new ApiError(500, "Error while uploading")
@@ -100,8 +106,8 @@ const publishAVideo = asyncHandler(async (req, res) => {
 
 
     } catch (error) {
-
-        throw new ApiError(401, `Error: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(401, `Error: ${message}`)
 
     }
 
@@ -131,7 +137,8 @@ const getVideoById = asyncHandler(async (req, res) => {
         )
 
     } catch (error) {
-        throw new ApiError(500, "Unable to retrieve video")
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Unable to retrieve video: ${message}`)
     }
 
 })
@@ -156,8 +163,8 @@ const updateVideo = asyncHandler(async (req, res) => {
     }
 
     if (thumbnailPath && thumbnailPath.length > 0) {
-        const thumbnail = await uploadOnCloudinary(thumbnailPath);
-        video.thumbnail = thumbnail.url || thumbnail.secure_url;
+        const thumbnail = await uploadOnCloudinary(thumbnailPath, "thumbnails")
+        video.thumbnail = thumbnail?.url || thumbnail?.secure_url
     }
 
     if (title && title.length > 0) {
@@ -200,7 +207,8 @@ const deleteVideo = asyncHandler(async (req, res) => {
                 new ApiResponse(200, deletedVideo, "Video Deleted")
             )
     } catch (error) {
-        throw new ApiError(500, `Error:${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error: ${message}`)
     }
 })
 
@@ -224,9 +232,8 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
         )
 
     } catch (error) {
-        throw new ApiError(500, `Error: ${error.message}`);
-
-
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Error: ${message}`);
     }
 
 })

@@ -25,6 +25,11 @@ const toggleSubscription = asyncHandler(async (req, res) => {
     }
     const subscriberId = req.user._id
 
+    if (subscriberId.equals(channelId)) {
+        return res.status(400).json(
+            new ApiResponse(400, null, "Cannot subscribe to your own channel")
+        );
+    }
     const existingSubscription = await Subscription.findOne({
         channel: channelId,
         subscriber: subscriberId
@@ -83,7 +88,8 @@ const getUserChannelSubscribers = asyncHandler(async (req, res) => {
             );
 
     } catch (error) {
-        throw new ApiError(500, `Unable to fetch channel subscribers: ${error.message}`);
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Unable to fetch channel subscribers: ${message}`)
     }
 
 
@@ -124,7 +130,8 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
 
 
     } catch (error) {
-        throw new ApiError(500, `Unable to fetch subscribed channels: ${error.message}`)
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(500, `Unable to fetch subscribed channels: ${message}`)
     }
 })
 

@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 // token fucntions in one
 
-const generateAccessTokenAndRefreshToken = async (userId) => {
+const generateAccessTokenAndRefreshToken = async (userId: string) => {
 
     try {
         // generate access token
@@ -76,10 +76,10 @@ const registerUser = asyncHandler(async (req, res) => {
     // access files with help of multer middleware
     // So here multer have uplaoded the files to local server and we acces using req.files
     // now we get the path of file
-    // console.log(req?.files);
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined
 
-    const avatarLocalPath = req.files?.avatar[0]?.path
-    const coverImageLocalPath = req.files?.coverImage[0]?.path || null
+    const avatarLocalPath = files?.avatar?.[0]?.path
+    const coverImageLocalPath = files?.coverImage?.[0]?.path || null
 
     // avater is required
     if (!avatarLocalPath) {
@@ -167,9 +167,11 @@ const logInUser = asyncHandler(async (req, res) => {
     const loggedInUser = await User.findById(user._id).
         select("-password -refreshToken");
 
+    const sameSite = process.env.NODE_ENV === "production" ? "none" as const : "lax" as const
     const options = {
-        httpOnly: true, //only modified by server,
-        secure: true, // only send on https
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite,
     }
 
     return res
@@ -202,8 +204,9 @@ const logOutUser = asyncHandler(async (req, res) => {
     )
 
     const options = {
-        httpOnly: true, //only modified by server,
-        secure: true, // only send on https
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" as const : "lax" as const,
     }
 
     return res
@@ -229,11 +232,16 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         }
         // can also throw error if refresh token is expired
 
+        const refreshSecret = process.env.REFRESH_TOKEN_SECRET
+        if (!refreshSecret) {
+            throw new ApiError(500, "Refresh token secret is not configured")
+        }
+
         const decodedToken = jwt.verify(
             incomingRefreshToken,
-            process.env.REFRESH_TOKEN_SECRET
-        )
-        const user = await User.findById(decodedToken?._id);
+            refreshSecret
+        ) as { _id: string }
+        const user = await User.findById(decodedToken._id)
 
         if (!user) {
             throw new ApiError(401, "Invalid refresh token")
@@ -245,8 +253,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         }
 
         const options = {
-            httpOnly: true, //only modified by server,
-            secure: true, // only send on https
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" as const : "lax" as const,
         }
         // both refresh token and access token generate and send in response and cookies (this is the rightw way)
         const { accessToken, refreshToken } = await generateAccessTokenAndRefreshToken(user._id)
@@ -260,9 +269,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             )
 
     } catch (error) {
-
-        throw new ApiError(401, `Error: ${error.message}`)
-
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(401, `Error: ${message}`)
     }
 
 
@@ -340,7 +348,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Avatar file is missing")
     }
 
-    const avatar = await uploadOnCloudinary(avatarLocalPath)
+    const avatar = await uploadOnCloudinary(avatarLocalPath, "avatar")
 
     if (!avatar.url) {
         throw new ApiError(500, "Error while uploading on avatar")
@@ -374,7 +382,7 @@ const updateUserCover = asyncHandler(async (req, res) => {
     }
 
     // we gives file path which cloudinary use to get the image and upload and return whole object, from which we save url in db
-    const cover = await uploadOnCloudinary(coverLocalPath)
+    const cover = await uploadOnCloudinary(coverLocalPath, "coverImage")
 
     if (!cover.url) {
         throw new ApiError(500, "Error while uploading on coverImage")
@@ -517,10 +525,10 @@ const getUserWatchHistory = asyncHandler(async (req, res) => {
                             as: "owner",
                             // to project to owner itself ?? try projecting outside owner $lookup
                             pipeline: [
-                                {
+                                            {
                                     $project: {
                                         fullName: 1,
-                                        username: 1,
+                                        userName: 1,
                                         avatar: 1
                                     }
                                 }

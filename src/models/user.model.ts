@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import jwt from "jsonwebtoken"
+import jwt, { type Secret } from "jsonwebtoken"
 import bcrypt from "bcrypt"
 
 const userSchema = new Schema(
@@ -67,40 +67,50 @@ userSchema.pre("save", async function (next) {
 // other mongooese methods : https:is accessed by User.findOne({})
 
 
-userSchema.methods.isPasswordCorrect = async function (password) {
-    return await bcrypt.compare(password, this.password)
-
+interface IUserMethods {
+    isPasswordCorrect(password: string): Promise<boolean>
+    generateAccessToken(): string
+    generateRefreshToken(): string
 }
 
+userSchema.methods.isPasswordCorrect = async function (password: string): Promise<boolean> {
+    return await bcrypt.compare(password, this.password)
+}
 
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateAccessToken = function (): string {
+    const accessSecret = process.env.ACCESS_TOKEN_SECRET as Secret | undefined
+    if (!accessSecret) {
+        throw new Error("Access token secret is not configured")
+    }
+
+    const expiresIn = (process.env.ACCESS_TOKEN_EXPIRY ?? "1h") as string
+
     return jwt.sign(
         {
             _id: this._id,
             email: this.email,
             userName: this.userName,
             fullName: this.fullName
-
-
         },
-        process.env.ACCESS_TOKEN_SECRET,
-        {
-            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
-        }
+        accessSecret as any,
+        { expiresIn } as any,
     )
 }
 
+userSchema.methods.generateRefreshToken = function (): string {
+    const refreshSecret = process.env.REFRESH_TOKEN_SECRET as Secret | undefined
+    if (!refreshSecret) {
+        throw new Error("Refresh token secret is not configured")
+    }
 
-userSchema.methods.generateRefreshToken = function () {
+    const expiresIn = (process.env.REFRESH_TOKEN_EXPIRY ?? "7d") as string
+
     return jwt.sign(
         {
             _id: this._id,
-
         },
-        process.env.REFRESH_TOKEN_SECRET,
-        {
-            expiresIn: process.env.REFRESH_TOKEN_EXPIRY
-        }
+        refreshSecret as any,
+        { expiresIn } as any,
     )
 }
 

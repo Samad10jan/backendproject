@@ -15,3 +15,8 @@ router.route("/:videoId").get(getVideoComments).post(addComment);
 router.route("/c/:commentId").delete(deleteComment).patch(updateComment);
 
 export default router
+
+/*
+get
+{"statusCode":200,"data":{"comments":[],"totalResults":0,"limit":10,"page":1,"totalPages":1,"pagingCounter":1,"hasPrevPage":false,"hasNextPage":false,"prevPage":null,"nextPage":null},"message":"Comments fetched successfully","success":true}
+ */

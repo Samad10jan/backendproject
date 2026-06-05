@@ -1,26 +1,26 @@
 //require("dotenv").config(path: "./.env"); // COMMON JS SYNTAX but require and import cannot be used together
+/// <reference path="./types/express.d.ts" />
 import dotenv from "dotenv";
-import { app } from "./app.js";
-import connectDB from "./db/db.js";
 
-dotenv.config({
-    path: "./.env"
-});
+dotenv.config({ path: "./.env" });
 
-// Second APPROACH
+// Use dynamic imports so we can catch import-time errors under ts-node/esm
+(async () => {
+    try {
+        const { app } = await import("./app.js");
+        const connectDB = (await import("./db/db.js")).default;
 
-connectDB()
-    .then(() => {
+        await connectDB();
+
         // listen for requests only after successful connection to the database
         app.listen(process.env.PORT || 8000, () => {
-            console.log("Server is running on port:", process.env.PORT);
-
-        })
-    })
-    .catch((err) => {
-        console.log("MONGODB connection Failed", err);
-
-    })
+            console.log("Server is running on port:", process.env.PORT || 8000);
+        });
+    } catch (err) {
+        console.error("Startup error:", err);
+        process.exit(1);
+    }
+})();
 
 
 

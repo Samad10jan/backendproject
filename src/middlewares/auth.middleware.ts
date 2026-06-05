@@ -17,9 +17,14 @@ export const verifyJWT = asyncHandler(async (req, _, next) => {
         // accessToken have many things in it we signed like _id,email,username,fullName 
         // so we can just decode( jwt.verify() gives decoded data) it and get user _id 
 
-        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        const accessSecret = process.env.ACCESS_TOKEN_SECRET
+        if (!accessSecret) {
+            throw new ApiError(500, "Access token secret is not configured")
+        }
 
-        const user = await User.findById(decodedToken?._id)
+        const decodedToken = jwt.verify(token, accessSecret) as { _id: string }
+
+        const user = await User.findById(decodedToken._id)
             .select("-password -refreshToken")
 
         if (!user) {
@@ -30,10 +35,9 @@ export const verifyJWT = asyncHandler(async (req, _, next) => {
         req.user = user;
         next() // tells: now my work is done go to next function given
     } catch (error) {
-
-        throw new ApiError(401, error?.message || "Invalid Access Token") 
-        // can be due to jwt.verify (because it also thorw error when token is expired or wrong screte key)
-
+        const message = error instanceof Error ? error.message : String(error)
+        throw new ApiError(401, message || "Invalid Access Token")
+        // can be due to jwt.verify (because it also thorw error when token is expired or wrong secret key)
     }
 
 

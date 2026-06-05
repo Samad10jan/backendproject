@@ -1,7 +1,8 @@
-const asyncHandler = (requestHandler) => {
-    return (req, res, next) => {
-        Promise.resolve(requestHandler(req, res, next))
-            .catch((err) => next(err))
+import type { NextFunction, Request, RequestHandler, Response } from "express"
+
+const asyncHandler = (requestHandler: (req: Request, res: Response, next: NextFunction) => Promise<any>): RequestHandler => {
+    return (req: Request, res: Response, next: NextFunction) => {
+        Promise.resolve(requestHandler(req, res, next)).catch(next)
     }
 }
 

@@ -7,10 +7,11 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 const getVideoComments = asyncHandler(async (req, res) => {
     //TODO: get all comments for a video
     const { videoId } = req.params
-    const { page = 1, limit = 10 } = req.query
+    const page = String(req.query.page ?? "1")
+    const limit = String(req.query.limit ?? "10")
     try {
 
-        const comments = await Comment.aggregate([
+        const comments = Comment.aggregate([
             { $match: { video: new mongoose.Types.ObjectId(videoId) } },
             { $sort: { createdAt: -1 } },
             {
@@ -37,9 +38,6 @@ const getVideoComments = asyncHandler(async (req, res) => {
                 }
             }
         ])
-        if (!comments) {
-            throw new ApiError(404, "Comments not found for this video")
-        }
         const result = await Comment.aggregatePaginate(comments, {
             page: parseInt(page),
             limit: parseInt(limit),
@@ -69,6 +67,7 @@ const addComment = asyncHandler(async (req, res) => {
     // videoId
     const { videoId } = req.params
     const { content } = req.body
+    
 
     try {
         if (!content) {
