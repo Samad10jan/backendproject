@@ -3,11 +3,11 @@
 ```
 ╔════════════════════════════════════════════════════════════════╗
 ║                                                                ║
-║    🎥 FULL-FEATURED BACKEND API WITH NODEJS + EXPRESS         ║
+║    🎥 FULL-FEATURED BACKEND API WITH NODEJS + EXPRESS          ║
 ║                                                                ║
-║  Express.js • MongoDB • Mongoose • JWT • Cloudinary          ║
+║  Express.js • MongoDB • Mongoose • JWT • Cloudinary • Postman  ║
 ║                                                                ║
-║     Production-Ready Video Streaming Platform Clone           ║
+║     Production-Ready Video Streaming Platform Clone            ║
 ║                                                                ║
 ╚════════════════════════════════════════════════════════════════╝
 ```
@@ -17,14 +17,6 @@
 This is a **comprehensive, production-ready backend API** built with **Express.js** and **MongoDB (Mongoose)**. It implements a full-featured video streaming platform similar to YouTube, complete with user authentication, video uploads, comments, likes, playlists, and subscriptions.
 
 **Perfect for learning:** Modern Node.js development, REST API design, database modeling, authentication systems, and best practices in backend engineering.
-
-| Detail | Info |
-|--------|------|
-| **Author** | Abdul Samad |
-| **Version** | 1.0.0 |
-| **License** | ISC |
-| **Type** | REST API Backend |
-| **Status** | Educational | Learning Resource |
 
 ---
 
@@ -38,21 +30,14 @@ GETTING_STARTED.md ◄─── 5-minute setup + troubleshooting
 README.md ◄────────────── Project overview (you are here)
     ↓
 Pick a Learning Path:
-├─ EXPRESS_GUIDE.md ◄─── Complete Express.js tutorial
-├─ MONGOOSE_GUIDE.md ◄─── Database & schema guide  
-├─ PACKAGES.md ◄───────── All dependencies explained
-└─ Notes.txt ◄──────────── Original learning notes
+├─ API_DOCS           ◄────────────── Api documentation with POSTMAN Collection link  
+├─ EXPRESS_GUIDE.md   ◄────────────── Complete Express.js tutorial
+├─ MONGOOSE_GUIDE.md  ◄────────────── Database & schema guide  
+├─ PACKAGES.md        ◄────────────── All dependencies explained
+└─ Notes.txt          ◄────────────── Original learning notes
 ```
 
-### 📖 Start Here!
 
-| New to Project? | Next Step |
-|---|---|
-| **Just want to run it** | 👉 [GETTING_STARTED.md](GETTING_STARTED.md) |
-| **Want project overview** | 👉 Keep reading README.md |
-| **Want to learn Express** | 👉 [EXPRESS_GUIDE.md](EXPRESS_GUIDE.md) |
-| **Want to learn Mongoose** | 👉 [MONGOOSE_GUIDE.md](MONGOOSE_GUIDE.md) |
-| **Want to understand packages** | 👉 [PACKAGES.md](PACKAGES.md) |
 
 ---
 
@@ -160,16 +145,16 @@ PracticeProject/
 ### 📊 Data Flow Visualization
 
 ```
-┌─────────────┐
-│   Client    │ (Browser/Mobile/Postman)
-└──────┬──────┘
-       │ HTTP Request
-       │ (GET /api/v1/users)
-       ↓
+       ┌─────────────┐
+       │   Client    │ (Browser/Mobile/Postman)
+       └──────┬──────┘
+              │ HTTP Request
+              │ (GET /api/v1/users)
+              ↓
 ┌────────────────────────────────────┐
 │        Express.js (app.js)         │
-│  • Parse request                   │
-│  • Apply middleware                │
+│     • Parse request                │
+│     • Apply middleware             │
 └────────────┬───────────────────────┘
              │
              ↓
@@ -239,32 +224,34 @@ PracticeProject/
 ├──────────────────────────────────────────────────────────┤
 │                                                          │
 │  🌐 Backend Framework                                    │
-│     • Express.js 5.2.1 - RESTful API server             │
-│     • Node.js (ES6+ modules)                            │
+│     • Express.js 5.2.1 - RESTful API server               │
+│     • Node.js (ES6+ modules)                             │
 │                                                          │
 │  🗄️ Database & ORM                                       │
-│     • MongoDB - NoSQL database                          │
-│     • Mongoose 9.0.1 - ODM (Object Document Mapper)    │
-│     • mongoose-aggregate-paginate-v2 - Pagination      │
+│     • MongoDB - NoSQL database                           │
+│     • Mongoose 9.0.1 - ODM (Object Document Mapper)      │
+│     • mongoose-aggregate-paginate-v2 - Pagination        │
 │                                                          │
-│  🔐 Security & Authentication                           │
-│     • bcrypt 6.0.0 - Password hashing                  │
-│     • JWT 9.0.3 - Token-based auth                     │
-│     • cookie-parser 1.4.7 - Cookie management          │
+│  🔐 Security & Authentication                            │
+│     • bcrypt 6.0.0 - Password hashing                    │
+│     • JWT 9.0.3 - Token-based auth                       │
+│     • cookie-parser 1.4.7 - Cookie management            │
 │                                                          │
 │  📁 File Management                                      │
-│     • Multer 2.0.2 - File upload handling              │
-│     • Cloudinary 2.8.0 - Cloud storage service         │
+│     • Multer 2.0.2 - File upload handling                │
+│     • Cloudinary 2.8.0 - Cloud storage service           │
 │                                                          │
-│  🔄 HTTP & CORS                                         │
-│     • CORS 2.8.5 - Cross-origin requests               │
+│  🔄 HTTP & CORS                                          │
+│     • CORS 2.8.5 - Cross-origin requests                 │
 │                                                          │
 │  ⚙️ Configuration & Environment                          │
-│     • dotenv 17.2.3 - Environment variables            │
+│     • dotenv 17.2.3 - Environment variables              │
 │                                                          │
 │  🛠️ Development Tools                                    │
-│     • Nodemon 3.1.11 - Auto reload (dev only)          │
-│     • Prettier 3.6.2 - Code formatter (dev only)       │
+│     • Nodemon 3.1.11 - Auto reload (dev only)            │
+│     • Prettier 3.6.2 - Code formatter (dev only)   
+
+POSTMAN      │
 │                                                          │
 └──────────────────────────────────────────────────────────┘
 ```
@@ -284,7 +271,7 @@ PracticeProject/
 | **Dev** | Nodemon | ^3.1.11 | Auto-reload during development |
 | **Dev** | Prettier | ^3.6.2 | Consistent code formatting |
 
-> 📖 **See [PACKAGES.md](PACKAGES.md)** for detailed explanation of each package, installation, and usage examples.
+
 
 
 ---
