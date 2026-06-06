@@ -83,7 +83,6 @@ GETTING_STARTED.md ◄─── 5-minute setup + troubleshooting
 README.md ◄────────────── Project overview (you are here)
     ↓
 Pick a Learning Path:
-├─ API_DOCS           ◄────────────── Api documentation with POSTMAN Collection link  
 ├─ EXPRESS_GUIDE.md   ◄────────────── Complete Express.js tutorial
 ├─ MONGOOSE_GUIDE.md  ◄────────────── Database & schema guide  
 ├─ PACKAGES.md        ◄────────────── All dependencies explained
