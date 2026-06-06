@@ -1,16 +1,65 @@
-# 📺 YouTube-like Backend Project
+# Practice Project: YouTube-like Backend Project
 
-```
-╔════════════════════════════════════════════════════════════════╗
-║                                                                ║
-║    🎥 FULL-FEATURED BACKEND API WITH NODEJS + EXPRESS          ║
-║                                                                ║
-║  Express.js • MongoDB • Mongoose • JWT • Cloudinary • Postman  ║
-║                                                                ║
-║     Production-Ready Video Streaming Platform Clone            ║
-║                                                                ║
-╚════════════════════════════════════════════════════════════════╝
-```
+
+
+## 🔧 Tech Stack & Dependencies
+<p align="center">
+
+<a href="https://nodejs.org">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
+</a>
+
+<a href="https://expressjs.com">
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+</a>
+
+<a href="https://www.mongodb.com">
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+</a>
+
+<a href="https://mongoosejs.com">
+  <img src="https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white" />
+</a>
+
+<a href="https://www.typescriptlang.org">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+</a>
+
+<a href="https://jwt.io">
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" />
+</a>
+
+<a href="https://cloudinary.com">
+  <img src="https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white" />
+</a>
+
+<a href="https://github.com/expressjs/multer">
+  <img src="https://img.shields.io/badge/Multer-FF6B35?style=for-the-badge&logo=files&logoColor=white" />
+</a>
+
+<a href="https://www.npmjs.com/package/cors">
+  <img src="https://img.shields.io/badge/CORS-00599C?style=for-the-badge" />
+</a>
+
+<a href="https://github.com/motdotla/dotenv">
+  <img src="https://img.shields.io/badge/Dotenv-ECD53F?style=for-the-badge&logo=dotenv&logoColor=black" />
+</a>
+
+<a href="https://nodemon.io">
+  <img src="https://img.shields.io/badge/Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white" />
+</a>
+
+<a href="https://prettier.io">
+  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" />
+</a>
+
+<a href="https://www.postman.com">
+  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
+</a>
+
+</p>
+
+--- 
 
 ## 📚 Project Overview
 
@@ -214,46 +263,8 @@ PracticeProject/
         └─────────────┘
 ```
 
----
 
-## 🔧 Tech Stack & Dependencies
 
-```
-┌──────────────────────────────────────────────────────────┐
-│                   TECHNOLOGY STACK                       │
-├──────────────────────────────────────────────────────────┤
-│                                                          │
-│  🌐 Backend Framework                                    │
-│     • Express.js 5.2.1 - RESTful API server               │
-│     • Node.js (ES6+ modules)                             │
-│                                                          │
-│  🗄️ Database & ORM                                       │
-│     • MongoDB - NoSQL database                           │
-│     • Mongoose 9.0.1 - ODM (Object Document Mapper)      │
-│     • mongoose-aggregate-paginate-v2 - Pagination        │
-│                                                          │
-│  🔐 Security & Authentication                            │
-│     • bcrypt 6.0.0 - Password hashing                    │
-│     • JWT 9.0.3 - Token-based auth                       │
-│     • cookie-parser 1.4.7 - Cookie management            │
-│                                                          │
-│  📁 File Management                                      │
-│     • Multer 2.0.2 - File upload handling                │
-│     • Cloudinary 2.8.0 - Cloud storage service           │
-│                                                          │
-│  🔄 HTTP & CORS                                          │
-│     • CORS 2.8.5 - Cross-origin requests                 │
-│                                                          │
-│  ⚙️ Configuration & Environment                          │
-│     • dotenv 17.2.3 - Environment variables              │
-│                                                          │
-│  🛠️ Development Tools                                    │
-│     • Nodemon 3.1.11 - Auto reload (dev only)            │
-│     • Prettier 3.6.2 - Code formatter (dev only)   
-
-POSTMAN      │
-│                                                          │
-└──────────────────────────────────────────────────────────┘
 ```
 
 ### 📦 Package Details
