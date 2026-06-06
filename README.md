@@ -1,8 +1,5 @@
 # Practice Project: YouTube-like Backend Project
 
-
-
-## 🔧 Tech Stack & Dependencies
 <p align="center">
 
 <a href="https://nodejs.org">
@@ -59,7 +56,14 @@
 
 </p>
 
---- 
+<h2 align="center">📚 API Documentation</h2>
+
+<p align="center">
+  <a href="https://documenter.getpostman.com/view/48752494/2sBXwqqVoU">
+    <img src="https://img.shields.io/badge/View-Postman_Docs-FF6C37?style=for-the-badge&logo=postman&logoColor=white" />
+  </a>
+</p>
+
 
 ## 📚 Project Overview
 
