@@ -88,7 +88,21 @@ Pick a Learning Path:
 ├─ PACKAGES.md        ◄────────────── All dependencies explained
 └─ Notes.txt          ◄────────────── Original learning notes
 ```
+## 📑 Quick Navigation
 
+- [📚 Project Overview](#-project-overview)
+- [🏗️ Project Structure](#️-project-structure)
+- [⚙️ Installation & Setup](#-installation--setup)
+- [🎓 Understanding Key Concepts](#-understanding-key-concepts)
+- [🔐 Authentication Flow](#-authentication-flow)
+- [📡 API Routes Overview](#-api-routes-overview)
+- [🛠️ Development Best Practices](#️-development-best-practices)
+- [🔑 Key Files Explained](#-key-files-explained)
+- [📖 Learning Path](#-learning-path)
+- [🎯 Common Issues & Solutions](#-common-issues--solutions)
+- [📝 Architecture Decisions](#-notes-on-architecture-decisions)
+- [🤝 Contributing Guidelines](#-contributing-guidelines)
+- [📋 Documentation Checklist](#-documentation-checklist)
 
 
 ---
@@ -707,45 +721,6 @@ userName: { type: String, index: true },
 email: { type: String, unique: true },  // unique is also an index
 ```
 
----
-
-## 📚 Learning Path
-
-### Week 1: Fundamentals
-1. ✅ Node.js and ES6+ modules
-2. ✅ Express.js basics (routing, middleware, request/response)
-3. ✅ Project structure and organization
-4. ✅ Environment variables with dotenv
-
-### Week 2: MongoDB & Mongoose
-1. ✅ MongoDB Atlas setup and connection
-2. ✅ Schema design and validation
-3. ✅ CRUD operations
-4. ✅ Relationships (references vs embedded documents)
-
-### Week 3: Authentication & Security
-1. ✅ Password hashing with bcrypt
-2. ✅ JWT token generation and verification
-3. ✅ Authentication middleware
-4. ✅ Protected routes and authorization
-
-### Week 4: File Handling & Advanced Features
-1. ✅ File upload with Multer
-2. ✅ Cloud storage with Cloudinary
-3. ✅ Aggregation pipelines
-4. ✅ Pagination and filtering
-
-### Week 5: API Development
-1. ✅ RESTful API principles
-2. ✅ Request validation
-3. ✅ Error handling
-4. ✅ API testing with Postman
-
-### Week 6: Deployment & Production
-1. ✅ Environment configuration
-2. ✅ Error logging and monitoring
-3. ✅ Performance optimization
-4. ✅ Deploying to cloud platforms
 
 ---
 
@@ -853,86 +828,349 @@ Your First Day?
 Congratulations! Server is running!
 ```
 
-### 📚 Learning Paths by Interest
+---
 
-#### 🌐 Want to Master Express.js?
-→ **Read: [EXPRESS_GUIDE.md](EXPRESS_GUIDE.md)**
-- Server setup and configuration
-- Routing system and parameters
-- Middleware pipeline
-- Error handling patterns
-- Authentication & security
-- Request/response handling
-- +Complete code examples
+## 📚 Learning Path
 
-#### 🗄️ Want to Master Database Design?
-→ **Read: [MONGOOSE_GUIDE.md](MONGOOSE_GUIDE.md)**
-- Schema definition and validation
-- Creating models and documents
-- CRUD operations
-- Data relationships (one-to-many, many-to-many)
-- Middleware hooks (pre/post)
-- Aggregation pipelines
-- Pagination strategies
-- +Real project examples
+This structure would accurately reflect everything you learned and built:
 
-#### 📦 Want to Understand Dependencies?
-→ **Read: [PACKAGES.md](PACKAGES.md)**
-- What each package does
-- Why it's used in this project
-- How to install and configure
-- Usage examples
-- Common errors and solutions
-- Package comparison table
+# Day 1 — Project Setup & Development Environment
 
-#### 📝 Original Notes?
-→ **See: [Notes.txt](Notes.txt)**
-- Original learning notes
-- Setup process documentation
-- Important concepts
-- Quick reference tips
+* npm initialization
+* `.gitignore` & `.gitkeep`
+* Environment Variables (`.env`)
+* Nodemon
+* Dev Dependencies
+* Folder Structure Setup
+* Prettier Configuration
 
 ---
 
-## 🎓 Complete Learning Path (6 Weeks)
+# Day 2 — MongoDB Integration
 
-```
-Week 1️⃣ - FUNDAMENTALS
-├─ Node.js & ES6+ modules
-├─ Express.js basics
-└─ Project structure
-   📖 Resource: EXPRESS_GUIDE.md
+* MongoDB Atlas Setup
+* Cluster Configuration
+* Network Access & Database Users
+* Connection Strings
+* Mongoose Installation
+* Database Connection Architecture
+* Dotenv Configuration
 
-Week 2️⃣ - DATABASE
-├─ MongoDB Atlas setup
-├─ Mongoose schemas & models
-└─ CRUD operations
-   📖 Resource: MONGOOSE_GUIDE.md
+---
 
-Week 3️⃣ - AUTHENTICATION
-├─ Password hashing (bcrypt)
-├─ JWT tokens
-└─ Auth middleware
-   📖 Resource: EXPRESS_GUIDE.md → Authentication section
+# Day 3 — Express Fundamentals
 
-Week 4️⃣ - ADVANCED FEATURES
-├─ File uploads (Multer)
-├─ Cloud storage (Cloudinary)
-└─ Aggregation pipelines
-   📖 Resource: MONGOOSE_GUIDE.md → Advanced Features
+* Express Application Structure
+* `app.js` & `index.js`
+* Request & Response Objects
+* Middleware Basics
+* CORS
+* Cookie Parser
+* JSON Parser
+* URL Encoded Parser
+* Static File Serving
+* Error & Response Standardization
 
-Week 5️⃣ - API DEVELOPMENT
-├─ RESTful principles
-├─ Validation & error handling
-└─ Response standardization
-   📖 Resource: README.md → API Routes Overview
+---
 
-Week 6️⃣ - DEPLOYMENT
-├─ Production setup
-├─ Environment configuration
-└─ Cloud deployment
-   📖 Resource: README.md → Installation & Setup
-```
+# Day 4 — User Model & Authentication Fundamentals
+
+* User Schema Design
+* Model Relationships
+* Mongoose Hooks
+* Password Hashing with Bcrypt
+* JWT Basics
+* Schema Methods
+* Access Tokens
+* Refresh Tokens
+
+---
+
+# Day 5 — File Upload System
+
+* Multer Middleware
+* Multipart Form Data
+* Temporary Local Storage
+* Cloudinary Integration
+* Node.js File System (`fs`)
+* Disk Storage vs Memory Storage
+* File Upload Workflow
+
+---
+
+# Day 6 — HTTP, HTTPS & REST APIs
+
+* HTTP vs HTTPS
+* SSL/TLS Basics
+* HTTP Headers
+* Security Headers
+* CORS Headers
+* HTTP Methods
+* HTTP Status Codes
+* REST Architecture
+* REST API Design Principles
+
+---
+
+# Day 7 — Router & Controller Architecture
+
+* Express Router
+* Controllers
+* Route Organization
+* Async Handler
+* MVC Architecture
+* Request Flow Understanding
+
+---
+
+# Day 8 — User Registration API
+
+* Registration Controller Logic
+* Input Validation
+* Custom API Errors
+* User Existence Checks
+* Avatar & Cover Image Uploads
+* Cloudinary Integration
+* User Creation Flow
+* Response Sanitization
+
+---
+
+# Day 9 — Debugging & Postman Fundamentals
+
+* Debugging Techniques
+* Console Logging
+* File Cleanup
+* Postman Basics
+* Collections
+* Environments
+* Variables
+* Automated Tests
+
+---
+
+# Day 10 — Login System & Token Management
+
+* Login Controller
+* Access Token Generation
+* Refresh Token Generation
+* Secure Cookies
+* Authentication Flow
+* Session Management
+
+---
+
+# Day 11 — Authentication Middleware & Logout
+
+* JWT Verification
+* Protected Routes
+* Custom Middleware
+* `req.user`
+* Logout Flow
+* Cookie Management
+* Middleware Chaining
+
+---
+
+# Day 12 — Refresh Token System
+
+* Refresh Token Verification
+* Token Rotation
+* Session Continuation
+* Protected Refresh Endpoints
+
+---
+
+# Day 13 — Subscription System Design
+
+* Subscription Schema
+* Many-to-Many Relationships
+* Scalable Database Design
+* Subscriber Counting
+* Channel Subscription Counting
+
+---
+
+# Day 14 — MongoDB Aggregation & Joins
+
+* Aggregation Pipeline
+* `$match`
+* `$lookup`
+* `$addFields`
+* `$project`
+* `$size`
+* `$cond`
+* `$in`
+* Channel Analytics API
+
+---
+
+# Day 15 — User Module Completion
+
+* Current User API
+* Update Account Details API
+* Change Password API
+* Update Avatar API
+* Update Cover Image API
+* Watch History API
+* Channel Profile API
+
+---
+
+# Day 16 — Video Module APIs
+
+* Upload Video API
+* Update Video API
+* Delete Video API
+* Publish/Unpublish API
+* Get Video By ID
+* Video Ownership Validation
+* Cloudinary Video Management
+
+---
+
+# Day 17 — Social Features APIs
+
+* Like APIs
+* Comment APIs
+* Playlist APIs
+* Subscription APIs
+* Dashboard APIs
+* Aggregation-Based Endpoints
+
+---
+
+# Day 18 — Backend Completion
+
+* Remaining Controllers
+* Route Protection
+* Validation Improvements
+* Error Handling Improvements
+* End-to-End API Flow Testing
+* Backend Feature Completion
+
+---
+
+# Day 19 — Professional Postman Collection
+
+* Collection Organization
+* Environment Setup
+* Authorization Handling
+* Variables Management
+* Request Examples
+* Response Examples
+* Collection Testing
+
+---
+
+# Day 20 — API Testing & Documentation
+
+* Full API Testing
+* Automated Postman Tests
+* Endpoint Documentation
+* Request Documentation
+* Response Documentation
+* Error Documentation
+* Collection Review
+
+---
+
+# Day 21 — Publishing & GitHub Integration
+
+* Published Postman Documentation
+* Public Documentation Link Generation
+* GitHub README Updates
+* Documentation Integration
+* Repository Cleanup
+* Project Finalization
+
+---
+
+# Week-wise Summary
+
+## Week 1 — Backend Foundation
+
+* Project Setup
+* Development Environment
+* MongoDB Integration
+* Express Fundamentals
+* Middleware
+* HTTP & REST APIs
+* File Upload Architecture
+
+---
+
+## Week 2 — Authentication & Core Architecture
+
+* User Models
+* JWT Authentication
+* Access Tokens
+* Refresh Tokens
+* Registration System
+* Login System
+* Logout System
+* Auth Middleware
+* Secure Routes
+
+---
+
+## Week 3 — Advanced Backend Development
+
+* User Controllers
+* Video Controllers
+* Playlist APIs
+* Comment APIs
+* Like APIs
+* Subscription APIs
+* Dashboard APIs
+* Validation & Error Handling
+
+---
+
+## Week 4 — Database Optimization & Analytics
+
+* MongoDB Aggregation
+* MongoDB Joins
+* Subscription System
+* Channel Analytics
+* Watch History
+* Advanced Queries
+* Performance-Oriented Data Modeling
+
+---
+
+## Week 5 — Testing, Documentation & Deployment Readiness
+
+* Complete API Testing
+* Postman Collections
+* Environment Management
+* Automated Tests
+* API Documentation
+* Published Postman Docs
+* GitHub Documentation Integration
+* Backend Project Finalization
+
+---
+
+### Final Outcome
+
+Built a production-style backend using:
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* Multer
+* Cloudinary
+* REST APIs
+* MongoDB Aggregation Framework
+* Postman Testing & Documentation
+* GitHub Project Documentation
+
+---
+
+
 
 ### Express.js
 - [Express.js Official Documentation](https://expressjs.com/)
@@ -1064,33 +1302,6 @@ For questions or improvements, refer to the learning notes in `Notes.txt` and ex
 - [x] **PACKAGES.md** - All dependencies explained
 - [x] **Notes.txt** - Original learning notes
 
-#### Quick Links to Sections:
-- [Installation & Setup](#-installation--setup) - Get started
-- [Project Structure](#-project-structure) - Understand layout
-- [API Routes](#-api-routes-overview) - All endpoints
-- [Key Concepts](#-understanding-key-concepts) - Deep dives
-- [Best Practices](#-development-best-practices) - Do's & Don'ts
-- [Common Issues](#-common-issues--solutions) - Troubleshooting
-
-
----
-
-## 🔍 Project Features
-
-| Feature | Status | Location |
-|---------|--------|----------|
-| **User Registration** | ✅ | `user.controller.js` |
-| **User Login** | ✅ | `user.controller.js` |
-| **JWT Authentication** | ✅ | `auth.middleware.js` |
-| **Video Upload** | ✅ | `video.controller.js` |
-| **Video Streaming** | ✅ | `video.routes.js` |
-| **Comments System** | ✅ | `comment.controller.js` |
-| **Like/Unlike System** | ✅ | `like.controller.js` |
-| **Playlists** | ✅ | `playlist.controller.js` |
-| **Subscriptions** | ✅ | `subscription.controller.js` |
-| **Dashboard Stats** | ✅ | `dashboard.controller.js` |
-| **Error Handling** | ✅ | `utils/ApiError.js` |
-| **Response Standardization** | ✅ | `utils/ApiResponse.js` |
 
 ---
 
