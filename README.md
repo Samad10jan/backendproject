@@ -73,21 +73,16 @@ This is a **comprehensive, production-ready backend API** built with **Express.j
 
 ---
 
-## Documentation Structure
+## 📚 Documentation Structure
 
-```
-🚀 QUICK START
-    ↓
-GETTING_STARTED.md ◄─── 5-minute setup + troubleshooting
-    ↓
-README.md ◄────────────── Project overview (you are here)
-    ↓
-Pick a Learning Path:
-├─ EXPRESS_GUIDE.md   ◄────────────── Complete Express.js tutorial
-├─ MONGOOSE_GUIDE.md  ◄────────────── Database & schema guide  
-├─ PACKAGES.md        ◄────────────── All dependencies explained
-└─ Notes.txt          ◄────────────── Original learning notes
-```
+| Document | Description |
+|-----------|-------------|
+| 📖 [GETTING_STARTED.md](./GETTING_STARTED.md) | Setup guide & troubleshooting |
+| 🏠 [README.md](./README.md) | Project overview |
+| ⚡ [EXPRESS_GUIDE.md](./EXPRESS_GUIDE.md) | Express.js complete guide |
+| 🍃 [MONGOOSE_GUIDE.md](./MONGOOSE_GUIDE.md) | MongoDB & Mongoose guide |
+| 📦 [PACKAGES.md](./PACKAGES.md) | Dependencies explained |
+| 📝 [Notes.txt](./Notes.txt) | Original learning notes |
 
 ## Quick Navigation
 
