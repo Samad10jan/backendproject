@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>Live API:</strong>
-  <a href="https://backendtube.onrender.com">
+  <a href="https://backendtube.onrender.com/api/v1/">
     backendtube.onrender.com
   </a>
 </p>
