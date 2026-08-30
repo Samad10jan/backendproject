@@ -80,6 +80,7 @@
 This is a **comprehensive, production-ready backend API** built with **Express.js** and **MongoDB (Mongoose)**. It implements a full-featured video streaming platform similar to YouTube, complete with user authentication, video uploads, comments, likes, playlists, and subscriptions.
 
 **Perfect for learning:** Modern Node.js development, REST API design, database modeling, authentication systems, and best practices in backend engineering.
+<img width="1511" height="734" alt="image" src="https://github.com/user-attachments/assets/51d78ee9-1fd9-49ba-b05d-141a583ae959" />
 
 ---
 
